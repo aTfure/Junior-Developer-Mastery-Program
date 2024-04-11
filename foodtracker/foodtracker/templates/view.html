@@ -49,19 +49,17 @@
 				<div class="col-lg-4 col-lg-offset-4">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<form action="" method="POST" role="form">
+							<form action="{{ url_for('main.add_food_to_log', log_id=log.id) }}" method="POST" role="form">
 							
 								<div class="form-group">
 									<label for="food-select">Add Food</label>
 									<div class="input-group">
-									  <select class="form-control" id="food-select" name="food-select">         
-					                        <option value=1>Burger</option>
-					                        <option value=2>Pizza</option>
-					                        <option value=3>Shake</option>
-					                        <option value=4>Burrito</option>
-					                        <option value=5>Steak</option>
-					                        <option value=6>Banana</option>
-					                        <option value=7>Pasta</option>
+									  <select class="form-control" id="food-select" name="food-select">
+
+											{% for food in foods %}       
+					                        	<option value="{{ food.id }}"">{{food.name}}</option>
+											{% endfor %}
+
 					                    </select>
 									  <span class="input-group-btn">
 										<button type="submit" class="btn btn-primary" id="add-btn">
@@ -82,7 +80,7 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h3 class="lean-h text-black">
-								<i class="glyphicon glyphicon-calendar"></i> December 14, 2017
+								<i class="glyphicon glyphicon-calendar"></i> {{ log.date.strftime('%B %d, %Y') }}
 							</h3>
 
 							<div class="row">
@@ -115,6 +113,23 @@
 										<th style="width: 5%;">#</th>
 										<th>Name</th>
 										<th style="width: 10%;">Protein</th>
-										<th style
+										<th style="width: 12%;">Carbs</th>
+										<th style="width: 10%;">Fat</th>
+										<th style="width: 10%;">Calories</th>
+										<th style="width: 10%;">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for food in log.foods %}
+										<tr>
+											<td>1</td><td>{{ food.name }}</td><td>{{ food.proteins }}</td>
+											<td>{{ food.carbs }}</td><td>{{ food.fats }}</td><td>{{ food.calories}}</td>
+											<td>
+												<a href="#" class="btn btn-danger btn-xs">
+													<i class="glyphicon glyphicon-trash"></i> Delete
+												</a>
+										</tr>
+									{% endfor %}
+
 	</body>
 </html>

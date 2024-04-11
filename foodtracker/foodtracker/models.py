@@ -15,7 +15,12 @@ class Food(db.Model):
     fats = db.Column(db.Integer, nullable=False)
 
 
+    @property
+    def calories(self):
+        return self.proteins * 4 + self.carbs * 4 + self.fats * 9
+
+
 class Log(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
-    foods = db.relationship('Food', secondary=log_food, backref='logs')
+    foods = db.relationship('Food', secondary=log_food, lazy='dynamic')
