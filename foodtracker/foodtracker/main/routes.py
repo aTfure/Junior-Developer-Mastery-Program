@@ -9,7 +9,29 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    log_dates = Log.query.order_by(Log.date.desc()).all()
+    logs = Log.query.order_by(Log.date.desc()).all()
+
+    log_dates = []
+
+    for log in logs:
+        proteins = 0
+        carbs = 0
+        fats = 0
+        calories = 0
+
+        for food in log.foods:
+            proteins += food.proteins
+            carbs += food.carbs
+            fats += food.fats
+            calories += food.calories
+
+        log_dates.append({
+            'log_date' : log,
+            'proteins' : proteins,
+            'carbs' : carbs,
+            'fats' : fats,
+            'calories' : calories
+        })
 
     return render_template('index.html', log_dates=log_dates)
 

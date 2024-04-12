@@ -81,9 +81,9 @@
 				<div class="col-lg-3">
 					<div class="panel panel-warning">
 						<div class="panel-body text-bold">
-							<i class="glyphicon glyphicon-calendar"></i> {{ log_date.date.strftime('%B %d, %Y') }}
+							<i class="glyphicon glyphicon-calendar"></i> {{ log_date['log_date'].date.strftime('%B %d, %Y') }}
 
-							<a class="btn btn-primary btn-xs pull-right" href="{{ url_for('main.view', log_id=log_date.id) }}">
+							<a class="btn btn-primary btn-xs pull-right" href="{{ url_for('main.view', log_id=log_date['log_date'].id) }}">
 								View <i class="glyphicon glyphicon-arrow-right"></i>
 							</a>
 						</div>
