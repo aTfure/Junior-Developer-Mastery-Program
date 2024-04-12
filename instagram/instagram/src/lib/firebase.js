@@ -1,10 +1,11 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore, serverTimestamp } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/analytics';
+import 'firebase/compat/auth';
 
 // here I want to import the seed file
 
-const config = {
+const firebaseConfig = {
   apiKey: "AIzaSyDiQwt7ugrM1kna9a2FQYitka5PJ-njyGQ",
   authDomain: "instagram-7854f.firebaseapp.com",
   projectId: "instagram-7854f",
@@ -13,12 +14,13 @@ const config = {
   appId: "1:56214443805:web:c3863bddcd919df0b873f4"
 };
 
-const firebase = initializeApp(config);
-const db = getFirestore(firebase);
-const auth = getAuth(firebase);
-const FieldValue = serverTimestamp();
 
-// here is where I want to call the seed file (only ONCE!)
-// seedDatabase(firebase);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-export { firebase, db, auth, FieldValue };
+const db = firebaseApp.firestore();
+const analytics = firebaseApp.analytics();
+const auth = firebase.auth();
+
+const FieldValue = db.FieldValue;
+
+export { db, analytics, FieldValue, auth };
