@@ -9,7 +9,9 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    log_dates = Log.query.order_by(Log.date.desc()).all()
+
+    return render_template('index.html', log_dates=log_dates)
 
 @main.route('/create_log', methods=['POST'])
 def create_log():
@@ -82,7 +84,20 @@ def view(log_id):
     log = Log.query.get_or_404(log_id)
     foods  = Food.query.all()
 
-    return render_template('view.html', foods=foods, log=log)
+    totals = {
+        'proteins' : 0,
+        'carbs' : 0,
+        'fats' : 0,
+        'calories' : 0
+    }
+
+    for food in log.foods:
+        totals['proteins'] += food.proteins
+        totals['carbs'] += food.carbs
+        totals['fats'] += food.fats
+        totals['calories'] += food.calories
+
+    return render_template('view.html', foods=foods, log=log, totals=totals)
 
 @main.route('/add_food_to_log/<int:log_id>', methods=['POST'])
 def add_food_to_log(log_id):
@@ -93,6 +108,16 @@ def add_food_to_log(log_id):
     food = Food.query.get(int(selected_food))
 
     log.foods.append(food)
+    db.session.commit()
+
+    return redirect(url_for('main.view', log_id=log_id))
+
+@main.route('/remove_food_from_log/<int:log_id>/<int:food_id>')
+def remove_food_from_log(log_id, food_id):
+    log = Log.query.get_or_404(log_id)
+    food = Food.query.get_or_404(food_id)
+
+    log.foods.remove(food)
     db.session.commit()
 
     return redirect(url_for('main.view', log_id=log_id))
