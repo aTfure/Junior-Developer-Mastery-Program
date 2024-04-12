@@ -1,6 +1,7 @@
+import { addDoc, collection } from 'firebase/firestore';
 /* eslint-disable no-plusplus */
 // NOTE: replace 'NvPY9M9MzFTARQ6M816YAzDJxZ72' with your Firebase auth user id (can be taken from Firebase)
-export function seedDatabase(firebase) {
+export function seedDatabase(db, firebase) {
     const users = [
       {
         userId: 's9osOxwMP8RGqTU20b2pMiE42dF3',
@@ -39,6 +40,10 @@ export function seedDatabase(firebase) {
         dateCreated: Date.now()
       }
     ];
+    users.forEach(async user => {
+      await addDoc(collection(db, 'users'), user);
+    });
+
   
     // eslint-disable-next-line prefer-const
     for (let k = 0; k < users.length; k++) {
