@@ -2,6 +2,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/analytics';
 import 'firebase/compat/auth';
+// import { seedDatabase } from '../seed';
 
 // here I want to import the seed file
 
@@ -22,5 +23,7 @@ const analytics = firebaseApp.analytics();
 const auth = firebase.auth();
 
 const FieldValue = db.FieldValue;
+
+// seedDatabase(firebase);
 
 export { db, analytics, FieldValue, auth };
