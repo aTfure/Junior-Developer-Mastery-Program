@@ -8,10 +8,11 @@ function App() {
   return (
     <Router>
       <Suspense fallback={<p>Loading...</p>}>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path={ ROUTES.LOGIN } element={<Login />} />
-        </Routes>
+      <Routes>
+        <Route>
+          <Route path="/login" element={<Login />} />
+      </Route>
+      </Routes>
       </Suspense>
     </Router>
   );
