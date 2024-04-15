@@ -26,4 +26,4 @@ const FieldValue = db.FieldValue;
 
 // seedDatabase(firebase);
 
-export { db, analytics, FieldValue, auth };
+export { db, analytics, FieldValue, auth, firebase };
