@@ -1,4 +1,4 @@
-import firebase from 'firebase/compat/app';
+import Firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/analytics';
 import 'firebase/compat/auth';
@@ -16,14 +16,11 @@ const firebaseConfig = {
 };
 
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebase = Firebase.initializeApp(firebaseConfig);
 
-const db = firebaseApp.firestore();
-const analytics = firebaseApp.analytics();
-const auth = firebase.auth();
 
-const FieldValue = db.FieldValue;
+const { FieldValue } = Firebase.firestore;
 
 // seedDatabase(firebase);
 
-export { db, analytics, FieldValue, auth, firebase };
+export { firebase, FieldValue };
