@@ -1,23 +1,32 @@
-import Skeleton from "react-loading-skeleton";
-import usePhotos from "../hooks/use-photos";
-
+/* eslint-disable no-nested-ternary */
+import { useContext } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import LoggedInUserContext from '../context/logged-in-user';
+import usePhotos from '../hooks/use-photos';
+import Post from './post';
 
 export default function Timeline() {
-    // we need to get the logged in user's photos (hook)
-    const { photos } = usePhotos();
-    return (
+
+  const { user } = useContext(LoggedInUserContext);
+
+  const { user: { following } = {} } = useContext(
+    LoggedInUserContext
+  );
+
+  const { photos } = usePhotos(user);
+ 
+
+  return (
     <div className="container col-span-2">
-        {!photos ? (
-           <>
-                {[...new Array(4)].map((_, index) => (
-                    <Skeleton key={index} count={1} width={320} height={400} />
-                ))}
-            </>
-            ) : photos?.length > 0 ? (
-                photos.map((content) => <p key={content.docId}>{content.imageSrc}</p>)
-            ) : (
-                <p className="text-center text-2xl">Follow people to see photos!</p>
-           )}
+      {following===undefined ?(
+        <Skeleton count={2} width={640} height={500} className="mb-5" />
+      ) : following.length===0 ?(
+        <p className="flex justify-center font-bold">Follow other people to see Photos</p>
+      ) : photos? (
+       photos.map((content) => <Post key={content.docId} content={content} />)          
+      ) : null}
+
+      
     </div>
-    );
+  );
 }
