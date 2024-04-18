@@ -1,11 +1,14 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import useAuthListener from "./hooks/use-auth-listener";
-import UserContext from "./context/user"; 
+import UserContext from "./context/user";
+import  ProtectedRoute  from "./helpers/protected-routes";
+
 
 const Login = lazy(() => import("./pages/login"));
 const SignUp = lazy(() => import("./pages/sign-up"));
 const Dashboard = lazy(() => import("./pages/dashboard"));
+const Profile = lazy(() => import("./pages/profile"));
 const NotFound = lazy(() => import("./pages/not-found"));
 
 export default function App() {
@@ -17,7 +20,12 @@ export default function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/p/:username" element={<Profile />} />
+            <Route path="/" element={
+              <ProtectedRoute user={user} >
+                {<Dashboard />}
+              </ProtectedRoute>
+            } />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
@@ -25,5 +33,3 @@ export default function App() {
     </UserContext.Provider>
   );
 }
-
-
