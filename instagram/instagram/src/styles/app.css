@@ -567,6 +567,9 @@ video {
 .mr-1 {
   margin-right: 0.25rem;
 }
+.mr-10 {
+  margin-right: 2.5rem;
+}
 .mr-3 {
   margin-right: 0.75rem;
 }
@@ -600,6 +603,9 @@ video {
 .h-4 {
   height: 1rem;
 }
+.h-40 {
+  height: 10rem;
+}
 .h-8 {
   height: 2rem;
 }
@@ -620,6 +626,9 @@ video {
 }
 .w-3\/5 {
   width: 60%;
+}
+.w-40 {
+  width: 10rem;
 }
 .w-6\/12 {
   width: 50%;
@@ -758,6 +767,9 @@ video {
 }
 .font-bold {
   font-weight: 700;
+}
+.font-medium {
+  font-weight: 500;
 }
 .uppercase {
   text-transform: uppercase;
