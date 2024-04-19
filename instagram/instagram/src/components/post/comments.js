@@ -23,6 +23,7 @@ export default function Comments({ docId, comments: allComments, posted, comment
             <span>{item.comment}</span>
           </p>
         ))}
+
         {comments.length >= 3 && commentsSlice < comments.length && (
           <button
             className="text-sm text-gray-base mb-1 cursor-pointer focus:outline-none"
