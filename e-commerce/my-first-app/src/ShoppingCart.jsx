@@ -9,14 +9,7 @@ export default class ShoppingCart extends Component {
 
     // Initialization of the state
     this.state = {
-      products: [
-        { id: 1, productName: "iPhone", price: 8900, quantity: 0 },
-        { id: 2, productName: "Sony Camera", price: 4500, quantity: 0 },
-        { id: 3, productName: "Samsung QLED TV", price: 7745, quantity: 0 },
-        { id: 4, productName: "iPad Pro", price: 12400, quantity: 0 },
-        { id: 5, productName: "Xbox", price: 7780, quantity: 0 },
-        { id: 6, productName: "Dell Monitor", price: 880, quantity: 0 },
-      ],
+      products: [],
     };
   }
 
@@ -47,10 +40,17 @@ export default class ShoppingCart extends Component {
   // render ends here
 
   // Execute after constructor and render method (includes life cycle of child components, if any) of current component
-  // componentDidMount() {
-  //   console.log("componentDidMount - ShoppingCart");
-  //   // Fetch data from data source
-  // }
+
+  componentDidMount = async () => {
+    // console.log("componentDidMount - ShoppingCart");
+    // Fetch data from data source
+    var response = await fetch("http://localhost:5000/products", {
+      method: "GET",
+    });
+    var prods = await response.json();
+    console.log(prods);
+    this.setState({ products: prods });
+  };
 
   // Executes when the component is updated
   // componentDidUpdate(prevProps, prevState) {

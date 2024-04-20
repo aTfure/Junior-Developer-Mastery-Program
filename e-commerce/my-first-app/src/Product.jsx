@@ -30,7 +30,7 @@ export default class Product extends Component {
             <div className="float-start">
               <span className="badge">{this.state.product.quantity}</span>
 
-              <div className="btn-group">
+              <div className="btn-group ms-1">
                 <button
                   className="btn btn-outline-success"
                   onClick={() => {
