@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Logo from "./Logo";
-
+import {
+  LinkedinIcon,
+  DribbbleIcon,
+  TwitterIcon,
+  GithubIcon,
+  SunIcon,
+} from "@/src/components/icons";
+// import { DribbbleIcon, GithubIcon, TwitterIcon } from "@/project files/Icons";
 const Header = () => {
   return (
     <header className="w-full p-4 px-10 flex items-center justify-between">
@@ -18,13 +25,23 @@ const Header = () => {
         <Link href="/contact" className="mr-2">
           Contact
         </Link>
-        <button>T</button>
+        <button>
+          <SunIcon />
+        </button>
       </nav>
       <div>
-        <a href="https://linkedin.com">linkedIn</a>
-        <a href="https://github.com">Github</a>
-        <a href="https://twitter.com">Twitter</a>
-        <a href="https://dribble.com">Dribble</a>
+        <a href="https://linkedin.com" className="inline-block w-6 h-6 mr-4">
+          <LinkedinIcon className="hover:scale-125 transition-all ease duration-200" />
+        </a>
+        <a href="https://github.com" className="inline-block w-6 h-6 mr-4">
+          <GithubIcon className="hover:scale-125 transition-all ease duration-200" />
+        </a>
+        <a href="https://twitter.com" className="inline-block w-6 h-6 mr-4">
+          <TwitterIcon className="hover:scale-125 transition-all ease duration-200" />
+        </a>
+        <a href="https://dribble.com" className="inline-block w-6 h-6 mr-4">
+          <DribbbleIcon className="hover:scale-125 transition-all ease duration-200" />
+        </a>
       </div>
     </header>
   );
