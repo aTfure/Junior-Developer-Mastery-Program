@@ -1,6 +1,7 @@
 import { allBlogs } from "contentlayer/generated";
 import HomeCoverSection from "../components/Home/HomeCoverSection";
 import FeaturedPosts from "../components/Home/FeaturedPosts";
+import RecentPosts from "../components/Home/RecentPosts";
 
 export default function Home() {
   // console.log(allBlogs);
@@ -8,6 +9,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <HomeCoverSection blogs={allBlogs} />
       <FeaturedPosts blogs={allBlogs} />
+      <RecentPosts blogs={allBlogs} />
     </main>
   );
 }
