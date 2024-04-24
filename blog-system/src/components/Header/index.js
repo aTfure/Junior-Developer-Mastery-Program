@@ -152,7 +152,7 @@ const Header = () => {
           aria-label="Check my profile on Github"
           target="_blank"
         >
-          <GithubIcon className="  hover:scale-125 transition-all ease duration-200 " />
+          <GithubIcon className="  hover:scale-125 transition-all ease duration-200 dark:fill-light" />
         </a>
         <a
           href={siteMetadata.dribbble}

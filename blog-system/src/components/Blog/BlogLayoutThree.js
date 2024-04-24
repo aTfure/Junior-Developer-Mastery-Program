@@ -5,7 +5,7 @@ import React from "react";
 
 const BlogLayoutThree = ({ blog }) => {
   return (
-    <div className="group flex flex-col items-center text-dark">
+    <div className="group flex flex-col items-center text-dark dark:text-light">
       <Link href={blog.url} className="h-full rounded-xl overflow-hidden">
         <Image
           src={blog.image.filePath.replace("../public", "")}
@@ -36,7 +36,7 @@ const BlogLayoutThree = ({ blog }) => {
           </h2>
         </Link>
 
-        <span className="capitalize text-gray  font-semibold text-sm  sm:text-base">
+        <span className="capitalize text-gray dark:text-light/50 font-semibold text-sm  sm:text-base">
           {format(new Date(blog.publishedAt), "MMMM dd, yyyy")}
         </span>
       </div>

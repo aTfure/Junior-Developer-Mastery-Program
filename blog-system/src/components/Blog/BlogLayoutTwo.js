@@ -3,13 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-{
-  /* <div className="group grid grid-cols-12 gap-4 items-center text-dark dark:text-light"></div> */
-}
-
 const BlogLayoutTwo = ({ blog }) => {
   return (
-    <div className="group grid grid-cols-12 gap-4 items-center text-dark">
+    <div className="group grid grid-cols-12 gap-4 items-center text-dark dark:text-light">
       <Link
         href={blog.url}
         className=" col-span-12  lg:col-span-4 h-full rounded-xl overflow-hidden"
@@ -41,7 +37,7 @@ const BlogLayoutTwo = ({ blog }) => {
           </h2>
         </Link>
 
-        <span className="inline-block w-full capitalize text-gray  font-semibold  text-xs sm:text-base">
+        <span className="inline-block w-full capitalize text-gray dark:text-light/50 font-semibold  text-xs sm:text-base">
           {format(new Date(blog.publishedAt), "MMMM dd, yyyy")}
         </span>
       </div>

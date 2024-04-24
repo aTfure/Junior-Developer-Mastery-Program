@@ -1,9 +1,10 @@
-import { cx } from "@/src/utils";
 import "./globals.css";
+import { cx } from "@/src/utils";
 import { Inter, Manrope } from "next/font/google";
 import Header from "@/src/components/Header";
 import Footer from "../components/Footer";
 import siteMetadata from "../utils/siteMetaData";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -38,7 +39,7 @@ export const metadata = {
     follow: true,
     googleBot: {
       index: true,
-      follow: false,
+      follow: true,
       noimageindex: true,
       "max-video-preview": -1,
       "max-image-preview": "large",
@@ -48,7 +49,6 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: siteMetadata.title,
-
     images: [siteMetadata.socialBanner],
   },
 };
@@ -57,8 +57,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={cx(inter.variable, manrope.variable, "font-mr bg-light")}
+        className={cx(
+          inter.variable,
+          manrope.variable,
+          "font-mr bg-light dark:bg-dark"
+        )}
       >
+        <Script id="theme-switcher">
+          {`if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }`}
+        </Script>
         <Header />
         {children}
         <Footer />
