@@ -1,6 +1,5 @@
-import { cx } from "@/src/utils/index";
 import React from "react";
-// import { cx } from "../utils";
+import { cx } from "../utils";
 
 export const SunIcon = ({ className, ...rest }) => (
   <svg

@@ -8,7 +8,7 @@ import { slug } from "github-slugger";
 const HomeCoverSection = ({ blogs }) => {
   // Destructure blogs from props
   const sortedBlogs = sortBlogs(blogs);
-  const blog = sortedBlogs[1];
+  const blog = sortedBlogs[0];
 
   return (
     <div className="w-full inline-block">
