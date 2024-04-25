@@ -19,7 +19,7 @@
   </head>
   <body>
   <!-- nav -->
-  <nav class="nav">
+  <nav class="navbar">
       <div class="nav-center">
         <!-- nav header -->
         <div class="nav-header">
@@ -43,8 +43,67 @@
           
           
         </div>
+      </nav>
+      <!-- end of nav -->
         <!-- main -->
-        <div class="page"></div>
+        <main class="page">
+          <!--header-->
+          <header class="hero">
+            <div class="hero-container">
+              <div class="hero-text">
+                <h1>simply recipes</h1>
+                <h4>no fluff, just recipes</h4>
+              </div>
+            </div>
+          </header>
+           <!--End of header-->
+           <!--recipes container-->
+           <section class="recipes-container">
+            <!--tags container-->
+            <div class="tags-container">
+              <h4>recipes</h4>
+              <div class="tags-list">
+                <a href="tag-template.html">Beef (1)</a>
+                <a href="tag-template.html">Breakfast (2)</a>
+                <a href="tag-template.html">Carrots (3)</a>
+                <a href="tag-template.html">Food (4)</a>
+              </div>
+            </div>
+             <!--End of tags container-->
+
+             <!--recipes list-->
+            <div class="recipes-list">
+              <!--single recipe-->
+              <a href="single-recipe.html" class="recipe">
+                <img src="./assets/recipes/recipe-1.jpeg" alt="food"
+                class="img recipe-img"/>
+                <h5>carne asada</h5>
+                <p>Prep : 15min | Cook : 5min</p>
+              </a>
+              <a href="single-recipe.html" class="recipe">
+                <img src="./assets/recipes/recipe-2.jpeg" alt="food"
+                class="img recipe-img"/>
+                <h5>greek ribs</h5>
+                <p>Prep : 15min | Cook : 5min</p>
+              </a>
+              <a href="single-recipe.html" class="recipe">
+                <img src="./assets/recipes/recipe-3.jpeg" alt="food"
+                class="img recipe-img"/>
+                <h5>vegatable soup</h5>
+                <p>Prep : 15min | Cook : 5min</p>
+              </a>
+              <a href="single-recipe.html" class="recipe">
+                <img src="./assets/recipes/recipe-4.jpeg" alt="food"
+                class="img recipe-img"/>
+                <h5>banana pancakes</h5>
+                <p>Prep : 15min | Cook : 5min</p>
+              </a>
+              <!--End of single recipe-->
+            </div>
+             <!--End of recipes list-->
+           </section>
+           <!--End of recipes container-->
+        </main>
         <!-- end of main-->
         <!--footer-->
         <footer class="page-footer">
@@ -54,7 +113,6 @@
             Built by <a href="https://www.github.com/aTfure">aTfure</a>
           </p>
         </footer>
-  <!-- end of nav -->
   <script src="./js/app.js"></script>
     
   </body>
