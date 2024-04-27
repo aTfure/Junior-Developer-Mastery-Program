@@ -77,7 +77,7 @@ endblock %} {% block body %}
                 </div>
 
                 <div class="modal-body">
-                  <form action="{{url_for('index')}}" method="POST">
+                  <form action="{{url_for('update')}}" method="POST">
                     <div class="form-group">
                       <label>Name:</label>
                       <input type="hidden" name="id" value="{{row.id}}" />
@@ -132,7 +132,6 @@ endblock %} {% block body %}
               </div>
             </div>
           </div>
-          <!-- End Modal Edit Employee-->
 
           {% endfor %}
         </table>
@@ -198,7 +197,6 @@ endblock %} {% block body %}
           </div>
         </div>
       </div>
-      <!-- End Modal Add Employee-->
     </div>
   </div>
 </div>
