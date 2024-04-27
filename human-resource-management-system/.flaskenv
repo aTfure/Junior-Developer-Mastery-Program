@@ -1,2 +1,0 @@
-FLASK_APP=human_resource_management_system
-FLASK_ENV=development

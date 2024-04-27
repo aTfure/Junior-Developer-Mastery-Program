@@ -1,21 +1,40 @@
-{% extends 'base.html' %} {% include 'header.html' %} {% block title %}Home{%
+{% extends 'base.html' %} {% include 'header.html' %} {% block title %} Home {%
 endblock %} {% block body %}
+
 <div class="container">
   <div class="row">
-    <div class="col col-md-12">
+    <div class="col md-12">
       <div class="jumbotron p-3">
         <h2>
-          Manage <b>Employees</b
-          ><button
+          Manage <b>Employees </b>
+          <button
             type="button"
             class="btn btn-success float-right"
             data-toggle="modal"
             data-target="#mymodal"
-            title="Add New Employee(s)"
           >
-            Add New Employee(s)
+            Add New Employees
           </button>
         </h2>
+
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+
+        <div class="alert alert-success alert-dismissable" role="alert">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="close"
+          >
+            <span aria-hidden="true">x</span>
+          </button>
+
+          {{message}}
+        </div>
+
+        {% endfor %} {% endif %} {% endwith %}
+
         <table class="table table-hover table-dark">
           <tr>
             <th>ID</th>
@@ -24,32 +43,103 @@ endblock %} {% block body %}
             <th>Phone</th>
             <th>Action</th>
           </tr>
+
+          {% for row in employees %}
           <tr>
-            <td>1</td>
-            <td>Mali Kabete</td>
-            <td>malikabete@gmail.com</td>
-            <td>0763000000</td>
+            <td>{{row.id}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.email}}</td>
+            <td>{{row.phone}}</td>
+
             <td>
               <a
-                href="#"
+                href="/update/{{row.id}}"
                 class="btn btn-warning btn-xs"
                 data-toggle="modal"
-                data-target="#modaledit"
-                title="Edit"
+                data-target="#modaledit{{row.id}}"
                 >Edit</a
               >
               <a
-                href="#"
+                href="/delete/{{row.id}}"
                 class="btn btn-danger btn-xs"
-                onclick="return confirm('Are you sure to Delete?')"
-                title="Delete"
+                onclick="return confirm('Are You Sure To Delete ?')"
                 >Delete</a
               >
             </td>
           </tr>
+
+          <!-- Modal Edit Employee-->
+          <div id="modaledit{{row.id}}" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Update Information</h4>
+                </div>
+
+                <div class="modal-body">
+                  <form action="{{url_for('index')}}" method="POST">
+                    <div class="form-group">
+                      <label>Name:</label>
+                      <input type="hidden" name="id" value="{{row.id}}" />
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="name"
+                        value="{{row.name}}"
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label>Email:</label>
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="email"
+                        value="{{row.email}}"
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label>Phone:</label>
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="phone"
+                        value="{{row.phone}}"
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <button class="btn btn-primary" type="submit">
+                        Update
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Modal Edit Employee-->
+
+          {% endfor %}
         </table>
       </div>
-      <!-- Modal for adding new employee -->
+
+      <!-- Modal Add Employee-->
+
       <div id="mymodal" class="modal fade" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -57,40 +147,37 @@ endblock %} {% block body %}
               <h4 class="modal-title">Add Employee</h4>
             </div>
             <div class="modal-body">
-              <form action="" method="POST">
+              <form action="{{url_for('insert')}}" method="POST">
                 <div class="form-group">
-                  <label for="name">Name:</label>
+                  <label>Name:</label>
                   <input
                     type="text"
                     class="form-control"
                     name="name"
-                    id="name"
-                    placeholder="Enter name"
-                    required
+                    required="1"
                   />
                 </div>
+
                 <div class="form-group">
-                  <label for="email">Email:</label>
+                  <label>Email:</label>
                   <input
                     type="email"
                     class="form-control"
                     name="email"
-                    id="email"
-                    placeholder="Enter email"
-                    required
+                    required="1"
                   />
                 </div>
+
                 <div class="form-group">
-                  <label for="phone">Phone:</label>
+                  <label>Phone:</label>
                   <input
-                    type="tel"
+                    type="number"
                     class="form-control"
                     name="phone"
-                    id="phone"
-                    placeholder="Enter phone"
-                    required
+                    required="1"
                   />
                 </div>
+
                 <div class="form-group">
                   <button class="btn btn-primary" type="submit">
                     Add Employee
@@ -98,6 +185,7 @@ endblock %} {% block body %}
                 </div>
               </form>
             </div>
+
             <div class="modal-footer">
               <button
                 type="button"
@@ -110,63 +198,9 @@ endblock %} {% block body %}
           </div>
         </div>
       </div>
-      <!-- End of Modal for  adding new employee -->
-      <!-- Modal for editing employee -->
-      <div id="modaledit" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Update Information</h4>
-            </div>
-            <div class="modal-body">
-              <form action="" method="POST">
-                <div class="form-group">
-                  <label for="name">Name:</label>
-                  <input type="hidden" name="id" value="id" />
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="name"
-                    value="Mali Kabete"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="email">Email:</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    name="email"
-                    value="malikabete@gmail.com"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="phone">Phone:</label>
-                  <input
-                    type="tel"
-                    class="form-control"
-                    name="phone"
-                    value="0763000000"
-                  />
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-primary" type="submit">Update</button>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End of Modal for editing employee -->
+      <!-- End Modal Add Employee-->
     </div>
   </div>
 </div>
+
 {% endblock %}

@@ -1,17 +1,55 @@
-from flask import Flask, render_template
+import os
+
+from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 
+from sqlalchemy.sql import func
 
-app = Flask(__name__) # Creating an instance of the Flask class
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+
+app = Flask(__name__)  # Creating an instance of the Flask class
 app.secret_key = 'secret_key'   # Secret key for the session
 
 # Configuring the database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:fure@localhost/HR_SYSTEM'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+
+class Data(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    phone = db.Column(db.String(100))
+
+    def __init__(self, name, email, phone):
+        self.name = name
+        self.email = email
+        self.phone = phone
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    all_data = Data.query.all()
+    return render_template('index.html', employees=all_data)
+
+
+@app.route('/insert', methods=['POST'])
+def insert():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+
+        my_data = Data(name, email, phone)
+        db.session.add(my_data)
+        db.session.commit()
+
+        flash("Employee Inserted Successfully")
+
+        return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
