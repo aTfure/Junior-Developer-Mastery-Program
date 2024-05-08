@@ -102,14 +102,14 @@ const Contact = () => {
           <br />
           <span>ochieng.fredonyango@gmail.com</span>
         </div>
-        <div className="map-wrap">
+        {/* <div className="map-wrap">
           <MapContainer center={[-1.2395593, 36.8979793]} zoom={13}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <Marker position={[-1.2395593, 36.8979793]}>
               <Popup>Fred lives here, Usikuje</Popup>
             </Marker>
           </MapContainer>
-        </div>
+        </div> */}
       </div>
       <Loader type="pacman" />
     </>
