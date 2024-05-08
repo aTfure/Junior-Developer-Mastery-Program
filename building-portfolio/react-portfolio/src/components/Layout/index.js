@@ -1,15 +1,23 @@
-import { Link } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
+import Sidebar from '../Sidebar/'
 import './index.scss'
-import LogoS from '../../assets/images/logo-s.png'
-import LogoSubtitle from '../../assets/images/logo_sub.png'
 
-const Layout = () => (
-  <div className="nav-bar">
-    <Link className="logo" to="/">
-      <img src={LogoS} alt="Logo" />
-      <img className="sub-logo" src={LogoSubtitle} alt="slobodan" />
-    </Link>
-  </div>
-)
+const Layout = () => {
+  return (
+    <div className="App">
+      <Sidebar />
+      <div className="page">
+        <span className="tags top-tags">&lt;body&gt;</span>
+
+        <Outlet />
+        <span className="tags bottom-tags">
+          &lt;/body&gt;
+          <br />
+          <span className="bottom-tag-html">&lt;/html&gt;</span>
+        </span>
+      </div>
+    </div>
+  )
+}
 
 export default Layout
