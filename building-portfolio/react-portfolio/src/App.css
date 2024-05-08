@@ -1,4 +1,5 @@
 @import 'animate.css';
+/* @import '~loaders.css/src/animations/pacman.scss'; */
 @keyframes rotate_pacman_half_up {
   0% {
     transform: rotate(270deg);
@@ -87,26 +88,28 @@
 }
 
 @font-face {
-  font-family: "Helvetica Neue";
-  src: url("./assets/fonts/helvetica-neu.ttf") format("ttf");
+  font-family: 'Helvetica Neue';
+  src: url('./assets/fonts/helvetica-neu.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "La Belle Aurore";
-  src: url("./assets/fonts/LaBelleAurore.woff2") format("woff2"), url("./assets/fonts/LaBelleAurore.woff") format("woff");
+  font-family: 'La Belle Aurore';
+  src: url('./assets/fonts/LaBelleAurore.woff2') format('woff2'),
+    url('./assets/fonts/LaBelleAurore.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Coolvetica";
-  src: url("./assets/fonts/CoolveticaRg-Regular.woff2") format("woff2"), url("./assets/fonts/CoolveticaRg-Regular.woff") format("woff");
+  font-family: 'Coolvetica';
+  src: url('./assets/fonts/CoolveticaRg-Regular.woff2') format('woff2'),
+    url('./assets/fonts/CoolveticaRg-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 input,
 textarea {
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 .loader-hidden {
@@ -125,4 +128,4 @@ textarea {
   height: 50px;
   animation: fadeOut 1s 1s;
   animation-fill-mode: forwards;
-}/*# sourceMappingURL=App.css.map */
+} /*# sourceMappingURL=App.css.map */
